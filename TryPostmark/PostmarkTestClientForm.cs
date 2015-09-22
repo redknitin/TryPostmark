@@ -47,6 +47,11 @@ namespace TryPostmark
             {
                 using (WebClient wc = new WebClient())
                 {
+                    //This gets the default proxy for the system along with the default credentials
+                    IWebProxy defaultWebProxy = WebRequest.DefaultWebProxy;
+                    defaultWebProxy.Credentials = CredentialCache.DefaultCredentials;
+                    wc.Proxy = defaultWebProxy;
+
                     if (!string.IsNullOrEmpty(txtProxy.Text))
                     {
                         WebProxy webProxy = new WebProxy(txtProxy.Text);
